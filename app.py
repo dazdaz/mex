@@ -54,20 +54,20 @@ def get_available_models():
         # Models available on Vertex AI (Gemini 2.5 and Anthropic Claude)
         return [
             # Google Gemini 2.5 Family (Generally Available)
-            "gemini-2.5-pro",          # Most advanced reasoning model
-            "gemini-2.5-flash",        # Workhorse model for low latency
-            "gemini-2.5-flash-lite",   # Cost-efficient, high-throughput model
+            "publishers/google/models/gemini-2.5-pro",          # Most advanced reasoning model
+            "publishers/google/models/gemini-2.5-flash",        # Workhorse model for low latency
+            "publishers/google/models/gemini-2.5-flash-lite",   # Cost-efficient, high-throughput model
 
             # Anthropic Claude Family (assumed available on Vertex AI)
-            "claude-opus-4@20250522",     # Claude 4 Opus model
-            "claude-sonnet-4@20250522",   # Claude 4 Sonnet model
-            "claude-3-7-sonnet@20250219", # Claude 3.7 Sonnet model
-            "claude-3-5-sonnet-v2@20241022", # Claude 3.5 Sonnet v2 model
-            "claude-3-5-sonnet@20240620", # Balanced Claude 3.5 model
-            "claude-3-opus@20240229",     # Most powerful Claude 3 model
-            "claude-3-sonnet@20240229",   # Balanced Claude 3 model
-            "claude-3-haiku@20240307",    # Fastest Claude 3 model
-            "claude-3-5-haiku@20241022",  # Latest Haiku 3.5 model
+            "publishers/anthropic/models/claude-opus-4@20250522",     # Claude 4 Opus model
+            "publishers/anthropic/models/claude-sonnet-4@20250522",   # Claude 4 Sonnet model
+            "publishers/anthropic/models/claude-3-7-sonnet@20250219", # Claude 3.7 Sonnet model
+            "publishers/anthropic/models/claude-3-5-sonnet-v2@20241022", # Claude 3.5 Sonnet v2 model
+            "publishers/anthropic/models/claude-3-5-sonnet@20240620", # Balanced Claude 3.5 model
+            "publishers/anthropic/models/claude-3-opus@20240229",     # Most powerful Claude 3 model
+            "publishers/anthropic/models/claude-3-sonnet@20240229",   # Balanced Claude 3 model
+            "publishers/anthropic/models/claude-3-haiku@20240307",    # Fastest Claude 3 model
+            "publishers/anthropic/models/claude-3-5-haiku@20241022",  # Latest Haiku 3.5 model
         ]
     except Exception as e:
         logging.error(f"❌ Failed to fetch available models: {e}")
