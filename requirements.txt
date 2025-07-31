@@ -1,0 +1,8 @@
+# Required for Vertex AI
+google-cloud-aiplatform>=1.38.0
+
+# Required for Flask
+Flask>=2.0.0
+
+# Required for google api core exceptions
+google-api-core>=2.0.0
