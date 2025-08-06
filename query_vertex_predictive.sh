@@ -44,6 +44,7 @@ if [ -z "$USER_PROMPT" ]; then
     exit 1
 fi
 
+
 ACCESS_TOKEN=$(gcloud auth print-access-token)
 if [ -z "$ACCESS_TOKEN" ]; then
   echo "Error: Access token is empty. Please authenticate with gcloud auth login."
@@ -66,15 +67,21 @@ fi
 # --- API Call ---
 
 echo -e "\nSending request..."
-curl -s \
+HTTP_CODE=$(curl -w "%{http_code}" -o "$OUTFILE" \
   -X POST \
   -H "Authorization: Bearer ${ACCESS_TOKEN}" \
   -H "Content-Type: application/json; charset=utf-8" \
   -d "$JSON_PAYLOAD" \
-  "${ENDPOINT}/v1/projects/${PROJECT_ID}/locations/${LOCATION}/publishers/${PUBLISHER}/models/${MODEL}" > "$OUTFILE"
+  "${ENDPOINT}/v1/projects/${PROJECT_ID}/locations/${LOCATION}/publishers/${PUBLISHER}/models/${MODEL}")
+
+if [[ "$HTTP_CODE" -ne 200 ]]; then
+    echo "Error: API call failed with HTTP status code $HTTP_CODE."
+    echo "API Response:"
+    cat "$OUTFILE"
+    exit 1
+fi
 
 echo "Response saved to $OUTFILE."
-
 
 # --- Format Output ---
 
