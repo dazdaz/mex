@@ -81,5 +81,5 @@ Before running the application, you need to configure your Google Cloud project 
 
 This repository includes two helper scripts to assist with Vertex AI management.
 
--   `query_vertex_predictive.sh`: A shell script to query the public Vertex AI endpoints using BASH.
+-   `query_vertex_predictive.sh`: A shell script to query global Vertex AI endpoints using BASH.
 -   `show_vertex_endpoints.sh`: A script to display the private endpoints where models have been deployed in your project.
