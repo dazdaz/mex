@@ -1,35 +1,44 @@
-gcloud auth application-default login
+# 🚀 MEX - Model EXplorer
 
-gcloud services enable aiplatform.googleapis.com
+MEX (Model EXplorer) is a desktop interface for Google Cloud's Vertex AI, providing an easy-to-use application to interact with and compare various AI models.
 
-gcloud iam service-accounts create vertex-app-runner \
-    --display-name="Service Account for Vertex AI App" \
-    --project=daev-playground
+<img width="3024" height="1728" alt="image" src="https://github.com/user-attachments/assets/5ca4983c-82f5-4c7a-a83f-dda44e9ebff9" />
 
-gcloud projects add-iam-policy-binding daev-playground \
-    --member="serviceAccount:vertex-app-runner@daev-playground.iam.gserviceaccount.com" \
-    --role="roles/aiplatform.user"
 
->>> remove this
-gcloud projects add-iam-policy-binding your-gcp-project-id \
-    --member="user:your-email@example.com" \
-    --role="roles/aiplatform.user"
-# daev@daev-playground.iam.gserviceaccount.com
+## 🛠️ Setup and Installation
 
-# Client-based APIs, like Vertex AI, need a quota project to handle billing and resource usage
-gcloud auth application-default set-quota-project daev-playground
-gcloud config set billing/quota_project daev-playground
+### 1. Google Cloud Configuration
 
-# If you have any issues with the above binding, then you can double check by listing all bindings and searching for aiplatform
-gcloud projects get-iam-policy myproject --flatten="bindings[].members"
+Before running the application, you need to configure your Google Cloud project and authenticate the `gcloud` CLI.
 
-# Running the app
-export GOOGLE_APPLICATION_CREDENTIALS=/Users/daev/.config/gcloud/application_default_credentials.json
-uv run flask run --host=127.0.0.1 --port=5001
+1.  **Authenticate your user account.** This command will open a web browser to grant permissions.
 
-# Troubleshooting
-FLASK_DEBUG=True uv run flask run --host=127.0.0.1 --port=5001
+    ```bash
+    gcloud auth application-default login
+    ```
 
-Open your browser and go to the URL provided:
+2.  **Set your Google Cloud Project ID.** You can either set this as an environment variable or set it as the default for your `gcloud` configuration. Replace `YOUR_PROJECT_ID` with your actual project ID.
 
-URL: http://127.0.0.1:5001
+    ```bash
+    export PROJECT_ID="YOUR_PROJECT_ID"
+    # Or, set it for your gcloud CLI
+    gcloud config set project YOUR_PROJECT_ID
+    ```
+
+3.  **Enable the required Google Cloud APIs.**
+
+    ```bash
+    gcloud services enable aiplatform.googleapis.com
+    gcloud services enable iamcredentials.googleapis.com
+    ```
+
+4.  **Grant necessary IAM permissions.** The user account needs the `Vertex AI User` role to access the models. Replace `YOUR_ACCOUNT` with your authenticated user account (e.g., `user@example.com`).
+
+    ```bash
+    gcloud projects add-iam-policy-binding YOUR_PROJECT_ID \
+        --member="user:YOUR_ACCOUNT" \
+        --role="roles/aiplatform.user"
+    ```
+
+5.  **Enable models in the Vertex AI Model Garden.** Navigate to the **Model Garden** in your Vertex AI console and enable the specific models you wish to use (e.g., Gemini, Claude).
+
