@@ -1,8 +1,5 @@
-# Required for Vertex AI
-google-cloud-aiplatform>=1.38.0
-
-# Required for Flask
-Flask>=2.0.0
-
-# Required for google api core exceptions
-google-api-core>=2.0.0
+# requirements.txt
+PyQt6>=6.6.0
+PyQt6-WebEngine>=6.6.0
+requests>=2.31.0
+google-auth>=2.25.0
