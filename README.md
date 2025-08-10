@@ -1,6 +1,30 @@
 # 🚀 MEX - Model EXplorer
 
-MEX (Model EXplorer) is a desktop interface for Google Cloud's Vertex AI, providing an easy-to-use application to interact with and compare various AI models.
+Summary: MEX (Model EXplorer) is a desktop interface for Google Cloud's Vertex AI, providing an easy-to-use application to interact with and compare various AI models.
+
+# AI Model Interaction Application
+
+This application provides a user interface for interacting with various **Google Cloud Vertex AI models**, including **Claude 3.7 Sonnet, Claude 4.1 Opus, Gemini 2.5 Pro, and Gemini 2.5 Flash**.
+
+## Key Features
+
+* **Multi-Model Support**: Easily switch between different AI models from Vertex AI.
+* **Tabbed Interface**: Manage multiple queries simultaneously with a convenient tabbed layout.
+* **Real-time Metrics**: View character and token counts for both your input prompts and the model's responses.
+* **User-Friendly UI**:
+    * **Split-Panel Layout**: Resize the input and response sections to suit your workflow.
+    * **Customization**: Toggle between dark and light modes, and adjust the application's font size.
+    * **Progress Indicators**: See the status of API calls with a progress bar and temporary status messages.
+* **Data Handling**:
+    * **API Integration**: Authenticates with Google Cloud using `google.auth` for secure API calls.
+    * **Response Options**: View responses as parsed text or the raw JSON output.
+    * **Export**: Save either the raw JSON or parsed text to a local file.
+    * **Logging**: A local log file helps with debugging and troubleshooting.
+* **Convenience & Shortcuts**:
+    * **Query Synchronization**: An optional feature to apply the same prompt to all open tabs for easy model comparison.
+    * **Clipboard Functions**: Quickly copy query text or model responses with dedicated buttons.
+    * **Keyboard Shortcuts**: Use `Ctrl+Enter` to execute a query, `Ctrl+T` to open a new tab, and `Ctrl+W` to close the current tab.
+* **Fictional Pricing**: Get an estimated cost for each query based on a predefined, fictional pricing structure.
 
 <img width="3024" height="1728" alt="image" src="https://github.com/user-attachments/assets/5ca4983c-82f5-4c7a-a83f-dda44e9ebff9" />
 
