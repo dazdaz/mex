@@ -4,6 +4,15 @@ MEX (Model EXplorer) is a desktop interface for Google Cloud's Vertex AI, provid
 
 <img width="3024" height="1728" alt="image" src="https://github.com/user-attachments/assets/5ca4983c-82f5-4c7a-a83f-dda44e9ebff9" />
 
+***
+
+## ⚠️ Disclaimer
+
+This application is **not an official Google product**. It is a personal project for demonstration purposes only.
+The fictional pricing shown within the app is for illustrative purposes and does not reflect actual costs.
+Use at your own risk.
+
+***
 
 ## 🛠️ Setup and Installation
 
@@ -42,3 +51,11 @@ Before running the application, you need to configure your Google Cloud project 
 
 5.  **Enable models in the Vertex AI Model Garden.** Navigate to the **Model Garden** in your Vertex AI console and enable the specific models you wish to use (e.g., Gemini, Claude).
 
+***
+
+## ⚙️ Helper Scripts
+
+This repository includes two helper scripts to assist with Vertex AI management.
+
+-   `query_vertex_predictive.sh`: A shell script to query the public Vertex AI endpoints using BASH.
+-   `show_vertex_endpoints.sh`: A script to display the private endpoints where models have been deployed in your project.
