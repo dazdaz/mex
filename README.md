@@ -73,7 +73,7 @@ Before running the application, you need to configure your Google Cloud project 
         --role="roles/aiplatform.user"
     ```
 
-5.  **Enable models in the Vertex AI Model Garden.** Navigate to the **Model Garden** in your Vertex AI console and enable the specific models you wish to use (e.g., Claude).
+5.  **Enable models in the Vertex AI Model Garden.** Navigate to the **Model Garden** in your Vertex AI console and enable the specific models you wish to use (e.g., Claude Opus 4.1).
 
 ***
 
