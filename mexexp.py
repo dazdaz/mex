@@ -1,4 +1,3 @@
-```python
 #!/usr/bin/env python3
 import sys
 import os
@@ -966,16 +965,17 @@ class QueryTab(QWidget):
         def replace_code(match):
             lang = match.group(1).strip() if match.group(1) else 'text'
             code = match.group(2)
-            return f'''<div class="code-block">
+            return f'''<pre class="code-pre">
 <div class="code-header">
   <span class="language">{lang}</span>
   <div class="code-actions">
-    <button class="collapse-btn" onclick="toggleCollapse(this)">Collapse</button>
-    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+    <button class="collapse-btn" onclick="toggleCollapse(this)">× Collapse</button>
+    <button class="wrap-btn" onclick="toggleWrap(this)">≡ Wrap</button>
+    <button class="copy-btn" onclick="copyCode(this)">○ Copy</button>
   </div>
 </div>
-<pre class="code-pre"><code class="language-{lang}">{code}</code></pre>
-</div>'''
+<code class="language-{lang}">{code}</code>
+</pre>'''
         text = re.sub(r'```(\w*)\n(.*?)\n```', replace_code, text, flags=re.S)
         # Replace \n with <br>
         text = text.replace('\n', '<br>')
@@ -999,26 +999,44 @@ code.inline {{
     border-radius: 3px;
     font-family: 'SF Mono', monospace;
 }}
-.code-block {{
+.code-pre {{
+    position: relative;
+    padding: 30px 12px 12px 12px;
     margin: 16px 0;
     border: 1px solid {COLORS['border']};
     border-radius: 4px;
-    overflow: hidden;
+    overflow-x: auto;
+    white-space: pre;
+    word-wrap: normal;
+    background-color: {COLORS['background']};
+    font-family: 'SF Mono', monospace;
+    font-size: 0.95em;
     box-shadow: 0 1px 3px rgba(0,0,0,0.05);
 }}
+.code-pre.wrapped {{
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow-x: hidden;
+}}
 .code-header {{
-    background-color: {COLORS['background']};
-    padding: 8px 12px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 4px 8px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid {COLORS['border']};
+    background-color: transparent;
+    z-index: 1;
 }}
 .language {{
-    font-weight: 600;
+    font-size: 0.8em;
     color: {COLORS['text_secondary']};
-    text-transform: uppercase;
-    font-size: 0.85em;
+    background-color: {COLORS['surface']};
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-weight: 600;
 }}
 .code-actions button {{
     background: none;
@@ -1033,33 +1051,33 @@ code.inline {{
     background-color: {COLORS['surface']};
     color: {COLORS['primary']};
 }}
-.code-pre {{
-    margin: 0;
-    padding: 12px;
-    overflow: auto;
-    white-space: pre-wrap;
-    word-wrap: break-word;
-    background-color: {COLORS['background']};
-    font-family: 'SF Mono', monospace;
-    font-size: 0.95em;
-}}
 </style>
 <script>
 function copyCode(btn) {{
-    const code = btn.closest('.code-block').querySelector('code').innerText;
+    const code = btn.closest('.code-pre').querySelector('code').innerText;
     navigator.clipboard.writeText(code).then(() => {{
-        btn.innerText = 'Copied';
-        setTimeout(() => btn.innerText = 'Copy', 2000);
+        btn.innerText = '○ Copied';
+        setTimeout(() => btn.innerText = '○ Copy', 2000);
     }});
 }}
 function toggleCollapse(btn) {{
-    const pre = btn.closest('.code-block').querySelector('.code-pre');
-    if (pre.style.display === 'none') {{
-        pre.style.display = '';
-        btn.innerText = 'Collapse';
+    const code = btn.closest('.code-pre').querySelector('code');
+    if (code.style.display === 'none') {{
+        code.style.display = '';
+        btn.innerText = '× Collapse';
     }} else {{
-        pre.style.display = 'none';
-        btn.innerText = 'Expand';
+        code.style.display = 'none';
+        btn.innerText = '× Expand';
+    }}
+}}
+function toggleWrap(btn) {{
+    const pre = btn.closest('.code-pre');
+    if (pre.classList.contains('wrapped')) {{
+        pre.classList.remove('wrapped');
+        btn.innerText = '≡ Wrap';
+    }} else {{
+        pre.classList.add('wrapped');
+        btn.innerText = '≡ No Wrap';
     }}
 }}
 </script>
@@ -1938,4 +1956,3 @@ def main():
     sys.exit(app.exec())
 if __name__ == "__main__":
     main()
-```
